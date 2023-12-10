@@ -1,0 +1,40 @@
+K#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+
+ll n;
+ll search(ll l, ll r, ll k)
+{
+    if(l > r)
+        return -1;
+    ll mid = (l + r) / 2;
+    ll not_div = mid - mid / n;
+    if(not_div > k)
+        return search(l, mid - 1, k);
+    else if(not_div < k)
+        return search(mid + 1, r, k);
+    else {
+        if(mid % n != 0)
+            return mid;
+        return search(l, mid - 1, k);
+    }
+}
+void solution()
+{
+    long long k;
+
+    cin >> n >> k;
+    cout << search(1, 2*k, k) << '\n';
+}
+int main()
+{
+    ios_base:: sync_with_stdio(false);
+    cin.tie(NULL);
+    long long t = 1;
+
+   cin >> t;
+    while(t--){
+        solution();
+    }
+    return 0;
+}
